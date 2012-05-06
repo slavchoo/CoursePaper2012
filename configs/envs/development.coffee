@@ -2,7 +2,6 @@ express = require 'express'
 #MongoStore = require 'connect-mongodb'
 #Db = require('mongodb').Db
 #Server = require('mongodb').Server
-log4js = require 'log4js'
 #mongoose = require 'mongoose'
 
 exports.apply = (app)->
@@ -24,13 +23,13 @@ exports.apply = (app)->
 	#	})
 	}
 
-	mongoose.connect('mongodb://localhost/soundFree', (err)->
-		if err
-			log4js.getLogger().error 'Can not connect to database'
-			throw err;
-
-		log4js.getLogger().info 'Successfully connected to database'
-	)
+#	mongoose.connect('mongodb://localhost/soundFree', (err)->
+#		if err
+#			console.error 'Can not connect to database'
+#			throw err;
+#
+#		console.info 'Successfully connected to database'
+#	)
 
 	app.set 'port', 8000
 	app.set 'view cache', false
