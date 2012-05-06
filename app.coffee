@@ -6,14 +6,21 @@ app = module.exports = express.createServer()
 # load models
 
 
-app.path =  path = require('path');
-app.jsHandler  = jsHandler = "";
-app.crypto = crypto = require('crypto');
+app.path =  path = require 'path'
+app.jsHandler  = jsHandler = ""
+app.crypto = crypto = require 'crypto'
 
 app.configure ->
 	publicDir = "#{__dirname}/public"
 	viewsDir  = "#{__dirname}/views"
 	coffeeDir = "#{viewsDir}/coffeescript"
+
+	app.use express.bodyParser {
+		uploadDir: './files'
+	}
+
+	app.use express.methodOverride()
+	app.use express.cookieParser()
 
 	app.set "views", viewsDir
 	app.register '.html', ejs
@@ -25,16 +32,9 @@ app.configure ->
 		enable: ['coffeescript'])
 	app.use express.static publicDir
 
-	app.use(express.bodyParser({
-		uploadDir: './files'
-		}
-	));
-	app.use express.methodOverride();
-	app.use express.cookieParser();
 
-
-require('./configs/envs/production').apply(app);
-require('./configs/envs/development').apply(app);
+require('./configs/envs/production').apply app
+require('./configs/envs/development').apply app
 
 app.dynamicHelpers {
 	session: (req, res)->
@@ -45,8 +45,8 @@ require('./configs/bootstrap').apply app
 require('./frontend/configs/bootstrap').apply app
 require('./admin/configs/bootstrap').apply app
 
-app.get '*', (req, res)->
-	throw new NotFound()
+#app.get '*', (req, res)->
+#	throw new NotFound()
 
 app.listen 3000
 console.log "Express server listening on port %d in %s mode", app.address().port, app.settings.env
