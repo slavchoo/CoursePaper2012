@@ -13,4 +13,4 @@ exports.apply = (app)->
 		res.render '404.html',{
 				title: 'La Belle Assiette| Page Not Found'
 		}
-		console.log(err);
+#		console.log(err);

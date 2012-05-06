@@ -2,7 +2,7 @@ path = require 'path'
 
 global.$ = {
 	controller: (name)->
-		return require './controllers/'+ name
+		return require './controllers/'+name
 
 	ajax: (name)->
 		return require './ajax/' + name
