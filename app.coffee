@@ -1,8 +1,7 @@
 express = require 'express'
 ejs = require 'ejs'
 app = module.exports = express.createServer()
-
-
+coffeescript = require 'coffee-script'
 # load models
 
 
@@ -26,10 +25,10 @@ app.configure ->
 	app.register '.html', ejs
 	app.set "view engine", 'html'
 	app.use app.router
-	app.use express.compiler(
-		src: viewsDir,
-		dest: publicDir,
-		enable: ['coffeescript'])
+	app.use express.compiler({
+		src: publicDir
+		enable: ['coffeescript']
+	})
 	app.use express.static publicDir
 
 
