@@ -1,3 +1,9 @@
+_.templateSettings = {
+	evaluate    : /<@([\s\S]+?)@>/g,
+	interpolate : /<@=([\s\S]+?)@>/g,
+	escape      : /<@-([\s\S]+?)@>/g
+};
+
 $ ->
 	class Controller extends Backbone.Router
 		routes:
@@ -50,7 +56,6 @@ $ ->
 			@albums.fetch()
 
 		render: ->
-			console.log "sdsd"
 			$(@el).append(_.template $('#NewsContainer').html()) if !$(@el).find('#NewsContainer').length
 			$(@el).append(_.template $('#AlbumContainer').html()) if !$(@el).find('#AlbumContainer').length
 
@@ -78,10 +83,10 @@ $ ->
 	class PostView extends Backbone.View
 		tagName: "div"
 		className: "span4 blog"
-		template: _.template $("#PostView").html()
+		template:	$("#PostView")
 
 		render: ->
-			@$el.html @template()
+			@$el.html _.template $("#PostView").html(), @model.toJSON()
 			return @
 
 	class AlbumView extends Backbone.View
