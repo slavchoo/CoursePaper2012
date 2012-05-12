@@ -2,8 +2,10 @@ express = require 'express'
 ejs = require 'ejs'
 app = module.exports = express.createServer()
 coffeescript = require 'coffee-script'
-# load models
+log4js = require 'log4js'
 
+# load models
+require './models/user'
 
 app.path =  path = require 'path'
 app.jsHandler  = jsHandler = ""

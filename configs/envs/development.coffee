@@ -1,8 +1,9 @@
 express = require 'express'
-#MongoStore = require 'connect-mongodb'
-#Db = require('mongodb').Db
-#Server = require('mongodb').Server
-#mongoose = require 'mongoose'
+MongoStore = require 'connect-mongodb'
+Db = require('mongodb').Db
+Server = require('mongodb').Server
+mongoose = require 'mongoose'
+log4js = require 'log4js'
 
 exports.apply = (app)->
 	app.configure 'production', ->
@@ -11,25 +12,27 @@ exports.apply = (app)->
 		showStack: true
 	}
 
-	app.use express.session {
-	secret: "soundFree_secred_Wdi78",
-	#	store: new MongoStore({
-	#	db: new Db('soundFree_session',
-	#		new Server('localhost', 27017, {
-	#		auto_reconnect: true,
-	#		native_parser: true
-	#		})
-	#		, {})
-	#	})
-	}
+	app.use express.session
+		secret: "soundFree_secred_Wdi78"
+		store: new MongoStore({
+			db: new Db('soundFree_session',
+						new Server('localhost', 27017,{
+								auto_reconnect: true,
+								native_parser: true
+						})
+						,{}
+					)
+		})
 
-#	mongoose.connect('mongodb://localhost/soundFree', (err)->
-#		if err
-#			console.error 'Can not connect to database'
-#			throw err;
-#
-#		console.info 'Successfully connected to database'
-#	)
+
+
+	mongoose.connect('mongodb://localhost/soundFree', (err)->
+		if err
+			console.error 'Can not connect to database'
+			throw err;
+
+		console.info 'Successfully connected to database'
+	)
 
 	app.set 'port', 8000
 	app.set 'view cache', false
