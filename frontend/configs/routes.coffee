@@ -29,3 +29,9 @@ exports.apply = (app) ->
 		$.beforeAction,
 		$.controller('album').get
 	]
+
+
+	app.all '/debug/fix', [
+		$.beforeAction,
+		$.controller('debug').index
+	]

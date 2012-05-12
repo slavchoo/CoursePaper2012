@@ -1,7 +1,7 @@
 $ ->
 	class Controller extends Backbone.Router
 		routes:
-			"" : "inde"
+			"" : "index"
 			"!/": "index"
 			"!/news": "news"
 			"!/music": "music"
@@ -50,8 +50,9 @@ $ ->
 			@albums.fetch()
 
 		render: ->
-			$(@el).append _.template $('#NewsContainer').html() if !$(@el).find('#NewsContainer').length
-			$(@el).append _.template $('#AlbumContainer').html() if !$(@el).find('#AlbumContainer').length
+			console.log "sdsd"
+			$(@el).append(_.template $('#NewsContainer').html()) if !$(@el).find('#NewsContainer').length
+			$(@el).append(_.template $('#AlbumContainer').html()) if !$(@el).find('#AlbumContainer').length
 
 		addPost: (post)->
 			view = new PostView
