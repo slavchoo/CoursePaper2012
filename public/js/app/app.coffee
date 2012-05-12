@@ -9,7 +9,7 @@ $ ->
 			"!/artists": "artists"
 
 		index: ->
-			Views.index.render() if Views.index?
+			Views.page.render() if Views.page?
 
 		news: ->
 			console.log "news"
@@ -30,20 +30,70 @@ $ ->
 
 	Views = {}
 
-	class SiteIndex extends Backbone.View
+	class SitePage extends Backbone.View
 		el: $ "#mainContainer"
 
-		template: _.template ($ "#SiteIndex").html()
+		posts: []
+		albums: []
 
 		events: {}
 
-		render: ->
-			$(@el).html @template AppState
+		constructor: ->
+			@posts = new PostCollection()
+			@posts.bind 'add', @addPost, @
+			@posts.bind 'all', @addAllPosts, @
+			@posts.fetch()
 
+			@albums = new AlbumCollection()
+			@albums.bind 'add', @addAlbum, @
+			@albums.bind 'all', @addAllAlbums, @
+			@albums.fetch()
+
+		render: ->
+			$(@el).append _.template $('#NewsContainer').html() if !$(@el).find('#NewsContainer').length
+			$(@el).append _.template $('#AlbumContainer').html() if !$(@el).find('#AlbumContainer').length
+
+		addPost: (post)->
+			view = new PostView
+				model: post
+
+			container = $(@el).find('.news')
+			container.append view.render().el
+
+		addAllPosts: ->
+			@posts.each @addPost, @
+
+		addAlbum: (album)->
+			view = new AlbumView
+				model: album
+
+			container = $(@el).find('.albums')
+			container.append view.render().el
+
+		addAllAlbums: ->
+			@albums.each @addAlbum, @
+
+
+	class PostView extends Backbone.View
+		tagName: "div"
+		className: "span4 blog"
+		template: _.template $("#PostView").html()
+
+		render: ->
+			@$el.html @template()
+			return @
+
+	class AlbumView extends Backbone.View
+		tagName: 'div'
+		className: 'span4 blog'
+		template: _.template $("#AlbumView").html()
+
+		render: ->
+			@$el.html @template()
+			return @
 
 	Views =
-		index: new SiteIndex()
-
+		page: new SitePage()
 
 	controller = new Controller()
 	Backbone.history.start()

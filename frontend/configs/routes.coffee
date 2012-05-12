@@ -19,3 +19,13 @@ exports.apply = (app) ->
 		$.beforeAction,
 		$.controller('post').get
 	]
+
+	app.get '/album',[
+		$.beforeAction,
+		$.controller('album').list
+	]
+
+	app.get '/album/:id', [
+		$.beforeAction,
+		$.controller('album').get
+	]
