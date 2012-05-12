@@ -7,3 +7,15 @@ exports.apply = (app) ->
 		$.beforeAction,
 		$.controller('site').index
 	]
+
+	#rest interface
+
+	app.get '/post',[
+		$.beforeAction,
+		$.controller('post').list
+	]
+
+	app.get '/post/:id',[
+		$.beforeAction,
+		$.controller('post').get
+	]

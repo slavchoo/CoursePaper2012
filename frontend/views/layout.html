@@ -12,7 +12,8 @@
 		<script type="text/javascript" src="/js/core/json2.js"></script>
 		<script type="text/javascript" src="/js/core/backbone.js"></script>
 
-		<script type="text/javascript" src="/js/app/index.js"></script>
+		<script type="text/javascript" src="/js/app/models.js"></script>
+		<script type="text/javascript" src="/js/app/app.js"></script>
 
 	</head>
 	<body>
@@ -28,19 +29,19 @@
 					<div class="nav-collapse">
 						<ul class="nav">
 							<li>
-								<a href="#" title="Главная">Главная</a>
+								<a href="#!/" title="Главная">Главная</a>
 							</li>
 							<li>
-								<a href="#" title="Новости">Новости</a>
+								<a href="#!/news" title="Новости">Новости</a>
 							</li>
 							<li>
-								<a href="#" title="Музыка">Музыка</a>
+								<a href="#!/music" title="Музыка">Музыка</a>
 							</li>
 							<li>
-								<a href="#" title="Видео">Видео</a>
+								<a href="#!/video" title="Видео">Видео</a>
 							</li>
 							<li>
-								<a href="#" title="Исполнители">Исполнители</a>
+								<a href="#!/artists" title="Исполнители">Исполнители</a>
 							</li>
 						</ul>
 						<form class="pull-right navbar-search form-search" id="pull-right" action="#" method="post"><input class="input-small" placeholder="Username" name="LoginForm[username]" id="LoginForm_username" type="text">&nbsp;
@@ -53,76 +54,7 @@
 			</div>
 		</div>
 		<div class="container music">
-			<div class="row">
-				<div class="span12">
 					<%- body %>
-				</div>
-			</div>
-			<div class="row">
-				<div class="span3 top">
-					<h2>Top</h2>
-					<ol>
-						<li value="1">Баста - Раз и навсегда</li>
-						<li>Баста - Раз и навсегда</li>
-						<li>Баста - Раз и навсегда</li>
-						<li>Баста - Раз и навсегда</li>
-						<li>Баста - Раз и навсегда</li>
-						<li>Баста - Раз и навсегда</li>
-						<li>Баста - Раз и навсегда</li>
-						<li>Баста - Раз и навсегда</li>
-						<li>Баста - Раз и навсегда</li>
-						<li>Баста - Раз и навсегда</li>
-						<li>Баста - Раз и навсегда</li>
-						<li>Баста - Раз и навсегда</li>
-						<li>Баста - Раз и навсегда</li>
-						<li>Баста - Раз и навсегда</li>
-						<li>Баста - Раз и навсегда</li>
-						<li>Баста - Раз и навсегда</li>
-					</ol>
-				</div>
-				<div class="span9">
-					<div class="row">
-						<h3>Альбомы</h3>
-						<div class="span4 blog">
-							<a href="/" title=""><img src="img/album cover_1.png" alt /></a>
-							<h4>Название альбома</h4>
-							<p>"Сигнал из космоса" является десятый студийный альбом рок-группы Санкт-Петербурга, - "Сплин". </p>
-							<a href="/" title=""><img src="img/album cover_2.png" alt /></a>
-							<h4>Название альбома</h4>
-							<p>"Сигнал из космоса" является десятый студийный альбом рок-группы Санкт-Петербурга, - "Сплин". </p>
-						</div>
-						<div class="span4 blog">
-							<a href="/" title=""><img src="img/album cover_3.png" alt /></a>
-							<h4>Название альбома</h4>
-							<p>"Сигнал из космоса" является десятый студийный альбом рок-группы Санкт-Петербурга, - "Сплин". </p>
-							<a href="/" title=""><img src="img/album cover_4.png" alt /></a>
-							<h4>Название альбома</h4>
-							<p>"Сигнал из космоса" является десятый студийный альбом рок-группы Санкт-Петербурга, - "Сплин". </p>
-						</div>
-					</div>
-				</div>
-				<div class="span9">
-					<div class="row">
-						<h3>Новости</h3>
-						<div class="span4 blog">
-							<a href="/" title=""><img src="img/album cover_5.png" alt /></a>
-							<h4>Название новости</h4>
-							<p>"Сигнал из космоса" является десятый студийный альбом рок-группы Санкт-Петербурга, - "Сплин". </p>
-							<a href="/" title=""><img src="img/album cover_6.png" alt /></a>
-							<h4>Название новости</h4>
-							<p>"Сигнал из космоса" является десятый студийный альбом рок-группы Санкт-Петербурга, - "Сплин". </p>
-						</div>
-						<div class="span4 blog">
-							<a href="/" title=""><img src="img/album cover_7.png" alt /></a>
-							<h4>Название новости</h4>
-							<p>"Сигнал из космоса" является десятый студийный альбом рок-группы Санкт-Петербурга, - "Сплин". </p>
-							<a href="/" title=""><img src="img/album cover_8.png" alt /></a>
-							<h4>Название новости</h4>
-							<p>"Сигнал из космоса" является десятый студийный альбом рок-группы Санкт-Петербурга, - "Сплин". </p>
-						</div>
-					</div>
-				</div>
-			</div>
 			<hr/>
 			<footer>
 				<p>&copy; SoundFree</p>

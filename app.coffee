@@ -12,7 +12,7 @@ app.crypto = crypto = require 'crypto'
 app.configure ->
 	publicDir = "#{__dirname}/public"
 	viewsDir  = "#{__dirname}/views"
-	coffeeDir = "#{viewsDir}/coffeescript"
+	coffeeDir = "#{publicDir}/coffeescript"
 
 	app.use express.bodyParser {
 		uploadDir: './files'
