@@ -38,9 +38,17 @@
 	</script>
 
 	<script type="text/template" id="PostView">
-		<img src="img/album cover_1.png" alt/>
-		<h4><a href="!/#post/<@= _id @>"><@= title @></a></h4>
+		<img src="img/album cover_1.png" class="" alt/>
+		<h4><a href="!/#post/<@= _id @>" class="view-post"><@= title @></a></h4>
 		<p class="clearfix"><@= content @></p>
+	</script>
+
+	<script type="text/template" id="PostFull">
+		<div class="blog full">
+			<h2><@= title @></h2>
+			<img src="img/album cover_1.png" class="" alt/>
+			<p class="clearfix"><@= content @></p>
+		</div>
 	</script>
 
 	<script type="text/template" id="AlbumView">

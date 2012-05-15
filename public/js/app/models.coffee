@@ -1,5 +1,7 @@
 class Post extends Backbone.Model
-	urlRoot : '/post'
+	urlRoot : '/post/'
+	url: ->
+		@urlRoot + @get('_id')
 
 window.Post = Post
 

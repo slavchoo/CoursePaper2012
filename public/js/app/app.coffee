@@ -13,6 +13,7 @@ $ ->
 			"!/music": "music"
 			"!/video": "video"
 			"!/artists": "artists"
+			"!/post/:id": "showPost"
 
 		index: ->
 			Views.page.render() if Views.page?
@@ -28,6 +29,12 @@ $ ->
 
 		artists: ->
 			console.log "artists"
+
+		showPost: (id)->
+			if Views.postPage?
+				post = new Post {_id: id}
+				Views.postPage.setModel post
+				post.fetch()
 
 
 	AppState =
@@ -48,14 +55,15 @@ $ ->
 			@posts = new PostCollection()
 			@posts.bind 'add', @addPost, @
 			@posts.bind 'all', @addAllPosts, @
-			@posts.fetch()
 
 			@albums = new AlbumCollection()
 			@albums.bind 'add', @addAlbum, @
 			@albums.bind 'all', @addAllAlbums, @
-			@albums.fetch()
 
 		render: ->
+			@posts.fetch()
+			@albums.fetch()
+			$(@el).empty()
 			$(@el).append(_.template $('#NewsContainer').html()) if !$(@el).find('#NewsContainer').length
 			$(@el).append(_.template $('#AlbumContainer').html()) if !$(@el).find('#AlbumContainer').length
 
@@ -79,14 +87,37 @@ $ ->
 		addAllAlbums: ->
 			@albums.each @addAlbum, @
 
+	class PostPage extends Backbone.View
+		el: $ "#mainContainer"
+		template: $ "#PostFull"
+
+		post: {}
+
+		constructor: () ->
+
+		render: () ->
+			console.log @post.toJSON()
+			$(@el).html _.template @template.html(), @post.toJSON()
+
+		setModel: (model) ->
+			@post = model
+			@post.bind 'change', @render, @
+
 
 	class PostView extends Backbone.View
 		tagName: "div"
 		className: "span4 blog"
-		template:	$("#PostView")
+		template:	$ "#PostView"
+
+		events:
+			"click .view-post": 'displayPost'
+
+		displayPost: (e) ->
+			controller.navigate "!/post/#{@model.get '_id'}", true
+			return false
 
 		render: ->
-			@$el.html _.template $("#PostView").html(), @model.toJSON()
+			@$el.html _.template @template.html(), @model.toJSON()
 			return @
 
 	class AlbumView extends Backbone.View
@@ -100,6 +131,7 @@ $ ->
 
 	Views =
 		page: new SitePage()
+		postPage:new PostPage()
 
 	controller = new Controller()
 	Backbone.history.start()
